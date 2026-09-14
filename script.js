@@ -1,5 +1,9 @@
 const banners=[
 
+/* =========================
+   КОММЕРСАНТ
+========================= */
+
 {
 project:"Коммерсант",
 name:"970×250",
@@ -8,6 +12,11 @@ src:"banners/kommersant/970x250/index.html",
 width:970,
 height:250
 },
+
+
+/* =========================
+   ВЕДОМОСТИ
+========================= */
 
 {
 project:"Ведомости",
@@ -25,6 +34,7 @@ type:"gif",
 src:"banners/vedomosti/640x250.gif",
 width:640,
 height:250,
+
 },
 
 {
@@ -34,30 +44,15 @@ type:"gif",
 src:"banners/vedomosti/620x250.gif",
 width:620,
 height:250,
-},
 
-
-/*{
-project:"GG",
-name:"620×250",
-type:"gif",
-src:"banners/gg/620x250.gif",
-width:620,
-height:250,
-scale:0.5
-},
-
-{
-project:"РБК",
-name:"970×250",
-type:"html",
-src:"banners/rbk/970x250/index.html",
-width:970,
-height:250
-}*/
+}
 
 ];
 
+
+/* =========================
+   ELEMENTS
+========================= */
 
 const list=document.getElementById("projectList");
 const preview=document.getElementById("previewContainer");
@@ -70,6 +65,25 @@ let current=null;
 let currentFilter="all";
 let bgIndex=0;
 
+
+/* Разделы, которые должны существовать,
+   даже если в них пока нет баннеров */
+
+const sections=[
+"Коммерсант",
+"Ведомости",
+"GG",
+"РБК"
+];
+
+
+/* Открытые разделы */
+
+const openedSections=new Set(["Ведомости"]);
+
+
+/* Фоны preview */
+
 const backgrounds=[
 "#e9e9e9",
 "#ffffff",
@@ -77,61 +91,124 @@ const backgrounds=[
 "#222222"
 ];
 
+
+
+/* =========================
+   MENU
+========================= */
+
 function renderList(){
 
 list.innerHTML="";
 
-const filtered=banners.filter(b=>currentFilter==="all"||b.type===currentFilter);
-const projects=[...new Set(filtered.map(b=>b.project))];
+sections.forEach(project=>{
 
-projects.forEach((project,index)=>{
+const projectBanners=banners.filter(b=>
+b.project===project &&
+(currentFilter==="all" || b.type===currentFilter)
+);
 
 const group=document.createElement("div");
 group.className="projectGroup";
 
+
+/* Заголовок раздела */
+
 const groupTitle=document.createElement("div");
 groupTitle.className="projectName projectToggle";
+
+const isOpen=openedSections.has(project);
+
 groupTitle.innerHTML=`
 <span>${project}</span>
-<span class="arrow">${index===0?"−":"+"}</span>
+<span class="arrow">${isOpen?"−":"+"}</span>
 `;
+
+
+/* Контейнер баннеров */
 
 const itemsWrap=document.createElement("div");
 itemsWrap.className="projectItems";
 
-if(index!==0){
-itemsWrap.style.display="none";
-}
+itemsWrap.style.display=isOpen?"block":"none";
+
+
+/* Клик по названию раздела */
 
 groupTitle.onclick=()=>{
 
-const isOpen=itemsWrap.style.display!=="none";
+if(openedSections.has(project)){
 
-itemsWrap.style.display=isOpen?"none":"block";
-groupTitle.querySelector(".arrow").textContent=isOpen?"+":"−";
+openedSections.delete(project);
+itemsWrap.style.display="none";
+groupTitle.querySelector(".arrow").textContent="+";
+
+}else{
+
+openedSections.add(project);
+itemsWrap.style.display="block";
+groupTitle.querySelector(".arrow").textContent="−";
+
+}
 
 };
 
-filtered.filter(b=>b.project===project).forEach(banner=>{
+
+/* Если раздел пока пустой */
+
+if(projectBanners.length===0){
+
+const emptyItem=document.createElement("div");
+emptyItem.className="emptyProject";
+emptyItem.textContent="Пока нет баннеров";
+
+itemsWrap.appendChild(emptyItem);
+
+}
+
+
+/* Баннеры раздела */
+
+projectBanners.forEach(banner=>{
 
 const item=document.createElement("div");
 item.className="projectItem";
 
-if(current===banner)item.classList.add("active");
+if(current===banner){
+item.classList.add("active");
+}
 
 item.innerHTML=`
 <div>
 <div class="itemName">${banner.name}</div>
 <div class="itemMeta">${banner.width} × ${banner.height}</div>
 </div>
-<div class="typeBadge">${banner.type.toUpperCase()}</div>
+
+<div class="typeBadge">
+${banner.type.toUpperCase()}
+</div>
 `;
 
-item.onclick=()=>showBanner(banner);
+
+/* Клик по баннеру */
+
+item.onclick=()=>{
+
+document.querySelectorAll(".projectItem").forEach(el=>{
+el.classList.remove("active");
+});
+
+item.classList.add("active");
+
+showBanner(banner);
+
+};
+
 
 itemsWrap.appendChild(item);
 
 });
+
 
 group.appendChild(groupTitle);
 group.appendChild(itemsWrap);
@@ -142,6 +219,11 @@ list.appendChild(group);
 
 }
 
+
+
+/* =========================
+   SHOW BANNER
+========================= */
 
 function showBanner(banner){
 
@@ -154,6 +236,9 @@ banner.width+" × "+banner.height+" px · "+banner.type.toUpperCase();
 
 preview.innerHTML="";
 
+
+/* HTML */
+
 if(banner.type==="html"){
 
 const iframe=document.createElement("iframe");
@@ -162,9 +247,16 @@ iframe.src=banner.src;
 iframe.width=banner.width;
 iframe.height=banner.height;
 
+iframe.style.border="0";
+
 preview.appendChild(iframe);
 
-}else{
+}
+
+
+/* GIF / IMAGE */
+
+else{
 
 const img=document.createElement("img");
 
@@ -179,16 +271,21 @@ preview.appendChild(img);
 
 }
 
-renderList();
-
 }
 
+
+
+/* =========================
+   FILTERS
+========================= */
 
 document.querySelectorAll(".filter").forEach(button=>{
 
 button.onclick=()=>{
 
-document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".filter").forEach(b=>{
+b.classList.remove("active");
+});
 
 button.classList.add("active");
 
@@ -201,6 +298,11 @@ renderList();
 });
 
 
+
+/* =========================
+   OPEN
+========================= */
+
 openButton.onclick=()=>{
 
 if(current){
@@ -209,6 +311,11 @@ window.open(current.src,"_blank");
 
 };
 
+
+
+/* =========================
+   BACKGROUND
+========================= */
 
 bgButton.onclick=()=>{
 
@@ -220,8 +327,24 @@ backgrounds[bgIndex];
 };
 
 
+
+/* =========================
+   START
+========================= */
+
 renderList();
 
+
+/* Сразу открываем первый баннер */
+
 if(banners.length){
-showBanner(banners[0]);
+
+current=banners[0];
+
+openedSections.add(current.project);
+
+renderList();
+
+showBanner(current);
+
 }
