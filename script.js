@@ -1,56 +1,40 @@
 const banners=[
 
 {
-project:"Октилия",
-name:"300×250",
+project:"Газпром Энергия Недр",
+name:"300×600 - Ведомости",
 type:"html",
-src:"banners/octilia-300x250/index.html",
-width:300,
-height:250
-},
-
-{
-project:"Октилия",
-name:"300×600",
-type:"html",
-src:"banners/octilia-300x600/index.html",
+src:"banners/300x600/index.html",
 width:300,
 height:600
 },
 
 {
-project:"Шалфей",
-name:"320×480",
-type:"html",
-src:"banners/sage-320x480/index.html",
-width:320,
-height:480
-},
-
-{
-project:"Холисал",
-name:"Static 300×250",
-type:"image",
-src:"images/holisal.jpg",
-width:300,
-height:250
-},
-
-{
-project:"Эваменол",
-name:"GIF 300×600",
+project:"Газпром Энергия Недр",
+name:"640×250",
 type:"gif",
-src:"images/evamenol.gif",
-width:300,
-height:600
+src:"banners/640x250.gif",
+width:640,
+height:250,
+scale:0.5
 },
 
 {
-project:"Окувайт",
-name:"Static 300×250",
-type:"image",
-src:"images/okuvait.png",
-width:300,
+project:"Газпром Энергия Недр",
+name:"620×250",
+type:"gif",
+src:"banners/620x250.gif",
+width:620,
+height:250,
+scale:0.5
+},
+
+{
+project:"Газпром Энергия Недр",
+name:"970×250 - Коммерсант",
+type:"html",
+src:"banners/970x250/index.html",
+width:970,
 height:250
 }
 
@@ -149,8 +133,11 @@ preview.appendChild(iframe);
 const img=document.createElement("img");
 
 img.src=banner.src;
-img.width=banner.width;
-img.height=banner.height;
+
+const scale=banner.scale ?? 1;
+
+img.width=banner.width*scale;
+img.height=banner.height*scale;
 
 preview.appendChild(img);
 
@@ -196,42 +183,9 @@ backgrounds[bgIndex];
 
 };
 
-{
-project:"Газпром Энергия Недр",
-name:"300х600 - Ведомости",
-type:"html",
-src:"banners/300x600/index.html",
-width:300 ,
-height:600
-},
-
-{
-project:"Газпром Энергия Недр",
-name:"640x250",
-type:"image",
-src:"banners/640x250.gif",
-width:640,
-height:250,
-  scale:0.5
-},
-
-{
-project:"Газпром Энергия Недр",
-name:"620x250",
-type:"image",
-src:"banners/640x250.gif",
-width:620,
-height:250,
-scale:0.5
-},
-
-{
-project:"Газпром Энергия Недр",
-name:"970x250 - Коммерсант",
-type:"html",
-src:"banners/300x600/index.html",
-width:970,
-height:250
-},
 
 renderList();
+
+if(banners.length){
+showBanner(banners[0]);
+}
