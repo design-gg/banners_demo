@@ -57,25 +57,40 @@ const backgrounds=[
 "#222222"
 ];
 
-
 function renderList(){
 
 list.innerHTML="";
 
 const filtered=banners.filter(b=>currentFilter==="all"||b.type===currentFilter);
-
 const projects=[...new Set(filtered.map(b=>b.project))];
 
-projects.forEach(project=>{
+projects.forEach((project,index)=>{
 
 const group=document.createElement("div");
 group.className="projectGroup";
 
 const groupTitle=document.createElement("div");
-groupTitle.className="projectName";
-groupTitle.textContent=project;
+groupTitle.className="projectName projectToggle";
+groupTitle.innerHTML=`
+<span>${project}</span>
+<span class="arrow">${index===0?"−":"+"}</span>
+`;
 
-group.appendChild(groupTitle);
+const itemsWrap=document.createElement("div");
+itemsWrap.className="projectItems";
+
+if(index!==0){
+itemsWrap.style.display="none";
+}
+
+groupTitle.onclick=()=>{
+
+const isOpen=itemsWrap.style.display!=="none";
+
+itemsWrap.style.display=isOpen?"none":"block";
+groupTitle.querySelector(".arrow").textContent=isOpen?"+":"−";
+
+};
 
 filtered.filter(b=>b.project===project).forEach(banner=>{
 
@@ -94,9 +109,12 @@ item.innerHTML=`
 
 item.onclick=()=>showBanner(banner);
 
-group.appendChild(item);
+itemsWrap.appendChild(item);
 
 });
+
+group.appendChild(groupTitle);
+group.appendChild(itemsWrap);
 
 list.appendChild(group);
 
