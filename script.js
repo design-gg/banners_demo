@@ -25,10 +25,19 @@ type:"gif",
 src:"banners/vedomosti/640x250.gif",
 width:640,
 height:250,
-scale:0.5
 },
 
 {
+project:"Ведомости",
+name:"620×250",
+type:"gif",
+src:"banners/vedomosti/620x250.gif",
+width:620,
+height:250,
+},
+
+
+/*{
 project:"GG",
 name:"620×250",
 type:"gif",
@@ -45,7 +54,7 @@ type:"html",
 src:"banners/rbk/970x250/index.html",
 width:970,
 height:250
-}
+}*/
 
 ];
 
