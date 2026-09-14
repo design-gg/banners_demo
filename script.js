@@ -16,7 +16,6 @@ type:"gif",
 src:"banners/640x250.gif",
 width:640,
 height:250,
-scale:0.5
 },
 
 {
@@ -26,7 +25,6 @@ type:"gif",
 src:"banners/620x250.gif",
 width:620,
 height:250,
-scale:0.5
 },
 
 {
