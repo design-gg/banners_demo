@@ -1,61 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Banner Preview</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Banner Preview</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!-- ЛЕВАЯ ПАНЕЛЬ -->
 <aside class="sidebar">
 
     <div class="logo">
         <div class="logoMark">P</div>
+
         <div>
             <b>PREVIEW</b>
             <span>Creative Gallery</span>
         </div>
     </div>
 
+
+    <!-- ФИЛЬТРЫ -->
     <div class="filters">
         <button class="filter active" data-filter="all">All</button>
         <button class="filter" data-filter="html">HTML</button>
-        <button class="filter" data-filter="image">Static</button>
         <button class="filter" data-filter="gif">GIF</button>
     </div>
 
+
+    <!--
+    СЮДА JAVASCRIPT АВТОМАТИЧЕСКИ ДОБАВИТ:
+
+    КОММЕРСАНТ
+        970×250
+        300×600
+
+    ВЕДОМОСТИ
+        300×600
+        640×250
+
+    GG
+        ...
+
+    РБК
+        ...
+    -->
     <div id="projectList" class="projectList"></div>
 
 </aside>
 
 
+
+<!-- ОСНОВНАЯ ЧАСТЬ -->
 <main class="main">
 
+
+    <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
     <header class="topbar">
 
         <div>
             <h1 id="title">Banner Preview</h1>
-            <div id="info" class="info">Select creative</div>
+
+            <div id="info" class="info">
+                Select creative
+            </div>
         </div>
 
+
         <div class="topActions">
-            <button id="bgButton">Change background</button>
-            <button id="openButton">Open ↗</button>
+
+            <button id="bgButton">
+                Change background
+            </button>
+
+            <button id="openButton">
+                Open ↗
+            </button>
+
         </div>
 
     </header>
 
 
+
+    <!-- ОБЛАСТЬ БАННЕРА -->
     <section class="previewArea">
 
         <div id="previewContainer" class="previewContainer">
 
             <div class="empty">
+
                 <div class="emptyIcon">✦</div>
+
                 <b>Select a creative</b>
-                <span>HTML5 · Static · GIF</span>
+
+                <span>
+                    HTML5 · GIF
+                </span>
+
             </div>
 
         </div>
@@ -64,6 +111,8 @@
 
 </main>
 
+
+<!-- JAVASCRIPT -->
 <script src="script.js"></script>
 
 </body>
