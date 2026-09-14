@@ -196,5 +196,40 @@ backgrounds[bgIndex];
 
 };
 
+{
+project:"Газпром Энергия Недр",
+name:"300х600 - Ведомости",
+type:"html",
+src:"banners/300x600/index.html",
+width:300 ,
+height:600
+},
+
+{
+project:"Газпром Энергия Недр",
+name:"640x250",
+type:"image",
+src:"banners/640x250.gif",
+width:640,
+height:250
+},
+
+{
+project:"Газпром Энергия Недр",
+name:"620x250",
+type:"image",
+src:"banners/640x250.gif",
+width:620,
+height:250
+},
+
+{
+project:"Газпром Энергия Недр",
+name:"970x250 - Коммерсант",
+type:"html",
+src:"banners/300x600/index.html",
+width:970,
+height:250
+},
 
 renderList();
