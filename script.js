@@ -211,7 +211,8 @@ name:"640x250",
 type:"image",
 src:"banners/640x250.gif",
 width:640,
-height:250
+height:250,
+  scale:0.5
 },
 
 {
@@ -220,7 +221,8 @@ name:"620x250",
 type:"image",
 src:"banners/640x250.gif",
 width:620,
-height:250
+height:250,
+scale:0.5
 },
 
 {
