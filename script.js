@@ -8,11 +8,19 @@ const banners=[
 project:"Коммерсант",
 name:"970×250",
 type:"html",
-src:"banners/kommersant/970x250/index.html",
+src:"banners/kommersant/600x250/index.html",
 width:970,
 height:250
 },
 
+{
+project:"Коммерсант",
+name:"600×250",
+type:"html",
+src:"banners/kommersant/600x250/index.html",
+width:600,
+height:250
+},
 
 /* =========================
    ВЕДОМОСТИ
