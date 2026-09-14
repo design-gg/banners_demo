@@ -60,6 +60,35 @@ color:#777;
 margin-top:3px;
 }
 
+.projectToggle{
+display:flex;
+align-items:center;
+justify-content:space-between;
+cursor:pointer;
+padding:10px 12px;
+border-radius:7px;
+transition:.2s;
+}
+
+.projectToggle:hover{
+background:#222;
+color:#fff;
+}
+
+.projectToggle .arrow{
+font-size:16px;
+font-weight:normal;
+color:#777;
+}
+
+.projectItems{
+padding-top:4px;
+}
+
+.projectItems .projectItem{
+padding-left:18px;
+}
+
 /* FILTERS */
 
 .filters{
