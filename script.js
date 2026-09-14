@@ -1,8 +1,17 @@
 const banners=[
 
 {
-project:"Газпром Энергия Недр",
-name:"300×600 - Ведомости",
+project:"Коммерсант",
+name:"970×250",
+type:"html",
+src:"banners/kommersant/970x250/index.html",
+width:970,
+height:250
+},
+
+{
+project:"Ведомости",
+name:"300×600",
 type:"html",
 src:"banners/vedomosti/300x600/index.html",
 width:300,
@@ -10,28 +19,30 @@ height:600
 },
 
 {
-project:"Газпром Энергия Недр",
+project:"Ведомости",
 name:"640×250",
 type:"gif",
 src:"banners/vedomosti/640x250.gif",
 width:640,
 height:250,
+scale:0.5
 },
 
 {
-project:"Газпром Энергия Недр",
+project:"GG",
 name:"620×250",
 type:"gif",
-src:"banners/vedomosti/620x250.gif",
+src:"banners/gg/620x250.gif",
 width:620,
 height:250,
+scale:0.5
 },
 
 {
-project:"Газпром Энергия Недр",
-name:"970×250 - Коммерсант",
+project:"РБК",
+name:"970×250",
 type:"html",
-src:"banners/kommersant/970x250/index.html",
+src:"banners/rbk/970x250/index.html",
 width:970,
 height:250
 }
