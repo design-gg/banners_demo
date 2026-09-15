@@ -22,6 +22,15 @@ width:600,
 height:250
 },
 
+{
+project:"Коммерсант",
+name:"300×250",
+type:"html",
+src:"banners/kommersant/300x250/index.html",
+width:300,
+height:250
+},
+   
 /* =========================
    ВЕДОМОСТИ
 ========================= */
